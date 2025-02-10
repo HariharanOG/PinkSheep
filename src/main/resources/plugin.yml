@@ -1,0 +1,6 @@
+name: PinkSheep
+version: '1.0-SNAPSHOT'
+main: me.hariharanog.pinkSheep.PinkSheep
+api-version: '1.21'
+authors: [ HariharanOG ]
+description: Shoot Sheep At People :)
