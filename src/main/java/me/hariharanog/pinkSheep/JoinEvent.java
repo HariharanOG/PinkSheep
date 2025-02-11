@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class JoinEvent implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.setJoinMessage(ChatColor.LIGHT_PURPLE.BOLD + event.getPlayer().getName() + " " + "Thanks For Joining The Alchemist Kava Minecraft Server");
+        event.setJoinMessage(ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + event.getPlayer().getName() + " " + "Thanks For Joining The Alchemist Kava Minecraft Server");
     }
 
 }

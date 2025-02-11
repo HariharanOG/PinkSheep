@@ -1,16 +1,13 @@
 package me.hariharanog.pinkSheep;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.Sheep;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Objects;
 
 public class SheepEvent implements Listener {
     @EventHandler
@@ -18,14 +15,17 @@ public class SheepEvent implements Listener {
         Action action = event.getAction();
         ItemStack item = event.getItem();
         Location location = event.getPlayer().getLocation();
-        Player player = event.getPlayer();
-        event.getItem().setType(Material.WOODEN_HOE);
 
-        if ((action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) && Objects.requireNonNull(item).getType() == Material.WOODEN_HOE) {
-            event.getPlayer().getWorld().spawnEntity(location, EntityType.SHEEP);
-        }
-        else {
+        if ((item != null ? item.getType() : null) != Material.WOODEN_HOE) {
             return;
         }
+        else if ((action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) && event.getPlayer().hasPermission("hariharanog.wooden.hoe")) {
+            Sheep s = (Sheep) event.getPlayer().getWorld().spawnEntity(location, EntityType.SHEEP);
+            s.setColor(DyeColor.PINK);
+            s.setCustomName(ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Benny Beliaggio");
+            s.setCustomNameVisible(true);
+        }
+        event.getItem().setType(Material.WOODEN_HOE);
     }
+
 }
