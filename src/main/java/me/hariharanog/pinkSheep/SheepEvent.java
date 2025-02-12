@@ -2,6 +2,7 @@ package me.hariharanog.pinkSheep;
 
 import org.bukkit.*;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Sheep;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,10 +21,13 @@ public class SheepEvent implements Listener {
             return;
         }
         else if ((action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) && event.getPlayer().hasPermission("hariharanog.wooden.hoe")) {
-            Sheep s = (Sheep) event.getPlayer().getWorld().spawnEntity(location, EntityType.SHEEP);
-            s.setColor(DyeColor.PINK);
-            s.setCustomName(ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Benny Beliaggio");
-            s.setCustomNameVisible(true);
+            Sheep sheep = (Sheep) event.getPlayer().getWorld().spawnEntity(location, EntityType.SHEEP);
+            Firework firework = location.getWorld().spawn(location, Firework.class);
+            sheep.setVelocity(event.getPlayer().getLocation().getDirection().multiply(2));
+            firework.teleport(sheep.getLocation());
+            sheep.setColor(DyeColor.PINK);
+            sheep.setCustomName(ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Benny Beliaggio");
+            sheep.setCustomNameVisible(true);
         }
         event.getItem().setType(Material.WOODEN_HOE);
     }

@@ -1,6 +1,5 @@
 package me.hariharanog.pinkSheep;
 
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
